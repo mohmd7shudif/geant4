@@ -16,7 +16,7 @@ GLOBLIBS += libG4intercoms.lib libG4global.lib
 
 include $(G4INSTALL)/config/architecture.gmk
 
-CPPFLAGS += -DG4EVENT_ALLOC_EXPORT
+CPPFLAGS += -DG4EVENT_ALLOC_EXPORT -DG4_USESMARTSTACK
 CPPFLAGS += \
             -I$(G4BASE)/global/management/include \
             -I$(G4BASE)/global/HEPRandom/include \

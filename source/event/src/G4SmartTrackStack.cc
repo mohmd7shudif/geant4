@@ -35,7 +35,9 @@ G4SmartTrackStack::G4SmartTrackStack()
 :fTurn(0),nTurn(5)
 {
   for(int i=0;i<nTurn;i++)
-  { stacks[i] = new G4TrackStack(); }
+    { stacks[i] = new G4TrackStackDQ();
+    G4cout << "stacks[" << i << "]" << stacks[i]->GetNTrack() << G4endl;
+    }
   // If entry of one sub-stack exceeds safetyValve1, we will stick
   // to that sub-stack until entry of that sub-stack goes down
   // to safetyValve2.
@@ -58,7 +60,7 @@ int G4SmartTrackStack::operator==(const G4SmartTrackStack &right) const
 int G4SmartTrackStack::operator!=(const G4SmartTrackStack &right) const
 { return (this!=&right); }
 
-void G4SmartTrackStack::TransferTo(G4TrackStack * aStack)
+void G4SmartTrackStack::TransferTo(G4TrackStackDQ * aStack)
 {
   for(int i=0;i<nTurn;i++)
   { stacks[i]->TransferTo(aStack); }
@@ -67,6 +69,7 @@ void G4SmartTrackStack::TransferTo(G4TrackStack * aStack)
 G4StackedTrack * G4SmartTrackStack::PopFromStack()
 {
   if( n_stackedTrack() == 0 ) return 0;
+
   G4StackedTrack * aStackedTrack = 0;
   while(!aStackedTrack)
   {

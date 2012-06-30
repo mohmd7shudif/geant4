@@ -79,6 +79,7 @@ GEANT4_DEFINE_MODULE(NAME G4event
         G4StackedTrack.hh
         G4StackingMessenger.hh
         G4TrackStack.hh
+	G4TrackStackDQ.hh
         G4TrajectoryContainer.hh
         G4UserEventAction.hh
         G4UserStackingAction.hh
@@ -115,6 +116,7 @@ GEANT4_DEFINE_MODULE(NAME G4event
         G4StackedTrack.cc
         G4StackingMessenger.cc
         G4TrackStack.cc
+	G4TrackStackDQ.cc
         G4TrajectoryContainer.cc
         G4UserEventAction.cc
         G4UserStackingAction.cc
