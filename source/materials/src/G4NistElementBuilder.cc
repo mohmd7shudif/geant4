@@ -58,6 +58,7 @@
 #include "G4NistElementBuilder.hh"
 #include "G4Element.hh"
 #include <sstream>
+#include "../../global/sol11fix.hh"
 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

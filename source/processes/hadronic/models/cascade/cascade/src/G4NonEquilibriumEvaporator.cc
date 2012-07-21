@@ -52,6 +52,7 @@
 #include "G4InuclSpecialFunctions.hh"
 #include "G4LorentzConvertor.hh"
 #include <cmath>
+#include "../../../../../global/sol11fix.hh"
 
 using namespace G4InuclSpecialFunctions;
 

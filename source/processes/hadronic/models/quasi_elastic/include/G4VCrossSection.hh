@@ -82,6 +82,7 @@
 #include "G4NucleiProperties.hh"
 #include <vector>
 #include "Randomize.hh"
+#include "../../../../global/sol11fix.hh"
 
 class G4VCrossSection
 {

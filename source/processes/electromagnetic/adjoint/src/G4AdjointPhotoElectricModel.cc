@@ -36,6 +36,7 @@
 #include "G4AdjointElectron.hh"
 #include  "G4Gamma.hh"
 #include "G4AdjointGamma.hh"
+#include "../../../../global/sol11fix.hh"
 
 
 ////////////////////////////////////////////////////////////////////////////////

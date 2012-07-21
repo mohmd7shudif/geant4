@@ -31,6 +31,7 @@
 #include <iomanip>
 #include <fstream>
 #include "G4AdjointInterpolator.hh"
+#include "../../../../global/sol11fix.hh"
 ///////////////////////////////////////////////////////
 //
 G4AdjointCSMatrix::G4AdjointCSMatrix(G4bool aBool){

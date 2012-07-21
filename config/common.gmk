@@ -59,6 +59,12 @@ ifneq ($(G4LIB_BUILD_STATIC),)
 $(G4LIBDIR)/lib$(name).a: $(G4TMPDIR)/obj.last
 	@if [ ! -d $(G4LIBDIR) ] ; then mkdir $(G4LIBDIR) ;fi
 	@echo Creating/replacing object files in $(G4LIBDIR)/lib$(name).a ...
+	dtrace -G -32 -o /home/stathis/FullCMS/simple_probes.o \
+	       -s /home/stathis/FullCMS/simple_probes.d \
+	       /home/stathis/gen-tests/geant4/geant4.9.5.p01/tmp/Linux-g++/G4event/G4SmartTrackStack.o
+#	dtrace -G -32 -o /home/stathis/SimplifiedCalorimeter/SimplifiedCalorimeter/simple_probes.o \
+#	       -s /home/stathis/SimplifiedCalorimeter/SimplifiedCalorimeter/simple_probes.d \
+#	       /home/stathis/gen-tests/geant4/geant4.9.5.p01/tmp/Linux-g++/G4event/G4SmartTrackStack.o
 	@rm -f $(G4LIBDIR)/lib$(name).a
 	@$(AR) $(OUT_LIB)$(G4LIBDIR)/lib$(name).a $(G4TMPDIR)/*.o
 	@if [ X$(G4SYSTEM) != XWIN32-VC ] ; then  \
@@ -71,7 +77,6 @@ endif
 #
 # Actual targets for .o, .d files
 #
-
 $(G4TMPDIR)/%.o: src/%.cc
 ifdef CPPVERBOSE
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $(OUT_OBJ)$(G4TMPDIR)/$(*F).o src/$*.cc

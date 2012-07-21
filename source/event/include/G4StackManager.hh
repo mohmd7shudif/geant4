@@ -35,7 +35,7 @@
 
 #include "G4UserStackingAction.hh"
 #include "G4StackedTrack.hh"
-#include "G4TrackStack.hh"
+#include "G4TrackStackDQ.hh"
 #include "G4SmartTrackStack.hh"
 #include "G4ClassificationOfNewTrack.hh"
 #include "G4Track.hh"
@@ -113,12 +113,12 @@ class G4StackManager
 #ifdef G4_USESMARTSTACK
       G4SmartTrackStack * urgentStack;
 #else
-      G4TrackStack * urgentStack;
+      G4TrackStackDQ * urgentStack;
 #endif
-      G4TrackStack * waitingStack;
-      G4TrackStack * postponeStack;
+      G4TrackStackDQ * waitingStack;
+      G4TrackStackDQ * postponeStack;
       G4StackingMessenger* theMessenger;
-      std::vector<G4TrackStack*> additionalWaitingStacks;
+      std::vector<G4TrackStackDQ*> additionalWaitingStacks;
       G4int numberOfAdditionalWaitingStacks;
 
   public:

@@ -37,6 +37,7 @@
 //          symmetry energy 
 
 #include "G4StatMFMacroMultiNucleon.hh"
+#include "../../../../../global/sol11fix.hh"
 
 // Default constructor
 G4StatMFMacroMultiNucleon::

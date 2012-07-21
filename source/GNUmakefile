@@ -94,13 +94,22 @@ libmap: liblist
 	done
 	@$(ECHO) "Making libname.map starter file ..."
 	@$(TOUCH) /tmp/G4libname.map.starter.$(unique);
-	@for i in `$(CAT) /tmp/G4_granlib_makefiles.$(unique)`; \
-	do \
-	  $(GREP) '^ *name *:=' $$i | $(CUT) -d \  -f 3 \
-	  >> /tmp/G4libname.map.starter.$(unique); \
-	  $(ECHO) $$i | $(SED) "s/^\\./source/" \
-	  >> /tmp/G4libname.map.starter.$(unique); \
+
+#	while IFS= read -r N; do 				\
+#	  $(GREP) '^ *name *:=' "$N" | $(CUT) -d \  -f 3	\
+#          >> /tmp/G4libname.map.starter.$(unique); 		\
+#	  $(ECHO) "$N" | $(SED) "s/^\\./source/" 		\
+#	  >> /tmp/G4libname.map.starter.$(unique);		\
+#	done < <(cat /tmp/G4_granlib_makefiles.$(unique))
+
+	@for i in `$(CAT) /tmp/G4_granlib_makefiles.$(unique) | sed 's/^-e //'`; \
+	do									 \
+	  $(GREP) -e '^ *name *:=' $$i | $(CUT) -d \  -f 3        		 \
+	    >> /tmp/G4libname.map.starter.$(unique);             		 \
+	  echo $$i | $(SED) "s/^\\./source/"                			 \
+	    >> /tmp/G4libname.map.starter.$(unique);              		 \
 	done
+
 	@$(ECHO) "Making libname.map ..."
 	@rm -f $(G4LIBDIR)/libname.map;
 	@G4TMP=$(G4TMP); export G4TMP; \

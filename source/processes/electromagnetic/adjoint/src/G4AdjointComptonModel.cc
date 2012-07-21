@@ -37,6 +37,7 @@
 #include "G4AdjointGamma.hh"
 #include "G4Gamma.hh"
 #include "G4KleinNishinaCompton.hh"
+#include "../../../../global/sol11fix.hh"
 
 
 ////////////////////////////////////////////////////////////////////////////////

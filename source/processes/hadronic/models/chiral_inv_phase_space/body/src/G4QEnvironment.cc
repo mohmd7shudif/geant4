@@ -61,6 +61,7 @@
 #include "G4QEnvironment.hh" 
 #include <cmath>
 #include <cstdlib>
+#include "../../../../../global/sol11fix.hh"
 using namespace std;
 
 G4QEnvironment::G4QEnvironment(const G4QNucleus& theEnv)

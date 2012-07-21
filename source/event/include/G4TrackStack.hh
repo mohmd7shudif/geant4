@@ -48,37 +48,37 @@ class G4SmartTrackStack;
 
 class G4TrackStack 
 {
-  public:
-      G4TrackStack();
-      ~G4TrackStack();
+public:
+	G4TrackStack();
+	~G4TrackStack();
 
-  private:
-      const G4TrackStack & operator=
-                          (const G4TrackStack &right);
-      G4int operator==(const G4TrackStack &right) const;
-      G4int operator!=(const G4TrackStack &right) const;
+private:
+	const G4TrackStack & operator=(const G4TrackStack &right);
+	G4int operator==(const G4TrackStack &right) const;
+	G4int operator!=(const G4TrackStack &right) const;
 
-  public:
-      void PushToStack(G4StackedTrack * aStackedTrack);
-      G4StackedTrack * PopFromStack();
-      void GrabFromStack(G4StackedTrack * aStackedTrack);
-      void clear();
-      void TransferTo(G4TrackStack * aStack);
-      void TransferTo(G4SmartTrackStack * aStack);
+public:
+	void PushToStack(G4StackedTrack * aStackedTrack);
+	G4StackedTrack * PopFromStack();
+	void GrabFromStack(G4StackedTrack * aStackedTrack);
+	void clear();
+	void TransferTo(G4TrackStack * aStack);
+	void TransferTo(G4SmartTrackStack * aStack);
 
-  private:
-      G4int n_stackedTrack;
-      G4StackedTrack * firstStackedTrack;
-      G4StackedTrack * lastStackedTrack;
-      G4int maxNTracks;
+private:
+	G4int n_stackedTrack;
+	G4StackedTrack * firstStackedTrack;
+	G4StackedTrack * lastStackedTrack;
+	G4int maxNTracks;
 
-  public:
-      inline G4int GetNTrack() const
-      { return n_stackedTrack; }
-      inline G4int GetMaxNTrack() const
-      { return maxNTracks; }
+	G4int safetyValve1, safetyValve2;
+	G4int nstick;
 
+public:
+	inline G4int GetNTrack() const
+	{ return n_stackedTrack; }
+	inline G4int GetMaxNTrack() const
+	{ return maxNTracks; }
 };
 
 #endif
-

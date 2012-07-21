@@ -36,7 +36,7 @@
 #define G4SmartTrackStack_h 1
 
 #include "G4StackedTrack.hh"
-#include "G4TrackStack.hh"
+#include "G4TrackStackDQ.hh"
 #include "globals.hh"
 
 // class description:
@@ -61,20 +61,21 @@ class G4SmartTrackStack
       void PushToStack(G4StackedTrack * aStackedTrack);
       G4StackedTrack * PopFromStack();
       void clear();
-      void TransferTo(G4TrackStack * aStack);
+      void TransferTo(G4TrackStackDQ * aStack);
+      G4double getEnergyOfStack(G4TrackStackDQ *aTrackStack);
+      void dumpStatistics();
+
 
   private:
       G4int fTurn;
       G4int nTurn; // should be 5
-      G4TrackStack* stacks[5];
+      G4double energies[5];
+      G4TrackStackDQ* stacks[5];
       // = 0 : all primaries and secondaries except followings
       // = 1 : secondary neutrons
       // = 2 : secondary electrons
       // = 3 : secondary gammas
       // = 4 : secondary positrons
-      G4int nStick;
-      G4int safetyValve1; 
-      G4int safetyValve2; 
       G4int maxNTracks;
 
   public:
@@ -86,8 +87,11 @@ class G4SmartTrackStack
   private:
       inline G4int n_stackedTrack() const
       {
-        return stacks[0]->GetNTrack()+stacks[1]->GetNTrack()
-         +stacks[2]->GetNTrack()+stacks[3]->GetNTrack()+stacks[4]->GetNTrack();
+	      return stacks[0]->GetNTrack() +
+		     stacks[1]->GetNTrack() +
+		     stacks[2]->GetNTrack() +
+		     stacks[3]->GetNTrack() +
+		     stacks[4]->GetNTrack();
       }
 };
 

@@ -45,11 +45,11 @@ G4StackManager::G4StackManager()
   urgentStack = new G4SmartTrackStack;
   G4cout<<"+++ G4StackManager uses G4SmartTrackStack. +++"<<G4endl;
 #else
-  urgentStack = new G4TrackStack;
+  urgentStack = new G4TrackStackDQ;
 //  G4cout<<"+++ G4StackManager uses ordinary G4TrackStack. +++"<<G4endl;
 #endif
-  waitingStack = new G4TrackStack;
-  postponeStack = new G4TrackStack;
+  waitingStack = new G4TrackStackDQ;
+  postponeStack = new G4TrackStackDQ;
 }
 
 G4StackManager::~G4StackManager()
@@ -190,7 +190,7 @@ G4Track * G4StackManager::PopNextTrack(G4VTrajectory**newTrajectory)
 void G4StackManager::ReClassify()
 {
   G4StackedTrack * aStackedTrack;
-  G4TrackStack tmpStack;
+  G4TrackStackDQ tmpStack;
 
   if( !userStackingAction ) return;
   if( GetNUrgentTrack() == 0 ) return;
@@ -248,7 +248,7 @@ G4int G4StackManager::PrepareNewEvent()
 #endif
 
     G4StackedTrack * aStackedTrack;
-    G4TrackStack tmpStack;
+    G4TrackStackDQ tmpStack;
 
     postponeStack->TransferTo(&tmpStack);
 
@@ -307,7 +307,7 @@ void G4StackManager::SetNumberOfAdditionalWaitingStacks(G4int iAdd)
   {
     for(int i=numberOfAdditionalWaitingStacks;i<iAdd;i++)
     {
-      G4TrackStack* newStack = new G4TrackStack;
+      G4TrackStackDQ* newStack = new G4TrackStackDQ;
       additionalWaitingStacks.push_back(newStack);
     }
     numberOfAdditionalWaitingStacks = iAdd;
@@ -325,7 +325,7 @@ void G4StackManager::TransferStackedTracks(G4ClassificationOfNewTrack origin, G4
 {
   if(origin==destination) return;
   if(origin==fKill) return;
-  G4TrackStack* originStack = 0;
+  G4TrackStackDQ* originStack = 0;
   switch(origin)
   {
     case fUrgent:
@@ -352,7 +352,7 @@ void G4StackManager::TransferStackedTracks(G4ClassificationOfNewTrack origin, G4
   } 
   else
   {
-    G4TrackStack* targetStack = 0;
+    G4TrackStackDQ* targetStack = 0;
     switch(destination)
     {
       case fUrgent:
@@ -386,7 +386,7 @@ void G4StackManager::TransferOneStackedTrack(G4ClassificationOfNewTrack origin, 
 {
   if(origin==destination) return;
   if(origin==fKill) return;
-  G4TrackStack* originStack = 0;
+  G4TrackStackDQ* originStack = 0;
   switch(origin)
   {
     case fUrgent:
@@ -420,7 +420,7 @@ void G4StackManager::TransferOneStackedTrack(G4ClassificationOfNewTrack origin, 
   } 
   else
   {
-    G4TrackStack* targetStack = 0;
+    G4TrackStackDQ* targetStack = 0;
     switch(destination)
     {
       case fUrgent:

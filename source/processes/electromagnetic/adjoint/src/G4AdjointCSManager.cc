@@ -50,6 +50,7 @@
 #include "G4ProductionCutsTable.hh"
 #include <fstream>
 #include <iomanip>
+#include "../../../../global/sol11fix.hh"
 
 
 G4AdjointCSManager* G4AdjointCSManager::theInstance = 0;
