@@ -1,0 +1,21 @@
+#undef  E
+
+#undef SS
+#undef UESP
+#undef EFL
+#undef CS
+#undef EIP
+#undef ERR
+#undef TRAPNO
+#undef EAX
+#undef ECX
+#undef EDX
+#undef EBX
+#undef ESP
+#undef EBP
+#undef ESI
+#undef EDI
+#undef DS
+#undef ES
+#undef FS
+#undef GS
