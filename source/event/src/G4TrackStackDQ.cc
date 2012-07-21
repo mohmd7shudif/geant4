@@ -45,9 +45,10 @@ G4TrackStackDQ::G4TrackStackDQ(G4ParticleDefinition *partDef)
 {
 	maxNTracks = 0;
 
-	G4cout << "+++ Using the DQ Track Stack +++       " << n_stackedTrack << G4endl;
+	G4cout << "+++ Using the DQ Track Stack +++ " << G4endl;
+
 	if (partDef == G4Electron::Definition()) {
-	  G4cout << "+++ Electron stack created +++" << G4endl;
+		G4cout << "+++ Electron stack created +++" << G4endl;
 		dqStackedTracks.reserve(5000);
 		nstick = 100;
 		safetyValve1 = 4000;
@@ -69,7 +70,6 @@ G4TrackStackDQ::~G4TrackStackDQ()
 
 const G4TrackStackDQ & G4TrackStackDQ::operator=(const G4TrackStackDQ &right) 
 {
-  G4cout << "++++++++++++++++++++++++ = operator called ! right = " << right.n_stackedTrack << G4endl;
 	n_stackedTrack    = right.n_stackedTrack;
 	firstStackedTrack = right.firstStackedTrack;
 	lastStackedTrack  = right.lastStackedTrack;
@@ -161,4 +161,20 @@ void G4TrackStackDQ::clear()
 	n_stackedTrack    = 0;
 	firstStackedTrack = 0;
 	lastStackedTrack  = 0;
+}
+
+G4double
+G4TrackStackDQ::getTotalEnergy(void) const
+{
+	G4double totalEnergy = 0.0f;
+
+	std::vector<G4StackedTrack*>::const_iterator itr;
+
+	for (itr  = dqStackedTracks.begin();
+	     itr != dqStackedTracks.end(); itr++) {
+		totalEnergy +=
+		    (*itr)->GetTrack()->GetDynamicParticle()->GetTotalEnergy();
+	}
+
+	return totalEnergy;
 }

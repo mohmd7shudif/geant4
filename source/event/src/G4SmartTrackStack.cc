@@ -35,24 +35,6 @@
 
 #include "G4Electron.hh"
 
-G4double
-G4SmartTrackStack::getEnergyOfStack(G4TrackStackDQ *aTrackStack)
-{
-	G4double totalEnergy = 0.0f;
-
-	if (aTrackStack) {
-		std::vector<G4StackedTrack*>::iterator itr;
-
-		for (itr  = aTrackStack->dqStackedTracks.begin();
-		     itr != aTrackStack->dqStackedTracks.end(); itr++) {
-			totalEnergy +=
-			  (*itr)->GetTrack()->GetDynamicParticle()->GetTotalEnergy();
-		}
-	}
-
-	return totalEnergy;
-}
-
 void
 G4SmartTrackStack::dumpStatistics()
 {
@@ -61,7 +43,7 @@ G4SmartTrackStack::dumpStatistics()
 	// printed to stdout
 	for (int i = 0; i < 5; i++) {
 	  G4cerr << stacks[i]->GetNTrack() << " ";
-	  G4cerr << getEnergyOfStack(stacks[i]) << " ";
+	  G4cerr << stacks[i]->getTotalEnergy() << " ";
 #if 0
 	  G4cerr << stacks[i]->GetSafetyValve1() << " ";
 	  G4cerr << stacks[i]->GetSafetyValve2() << " ";

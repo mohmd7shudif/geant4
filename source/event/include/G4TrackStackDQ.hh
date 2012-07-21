@@ -79,6 +79,8 @@ public:
 	inline G4int GetNStick() const
 	{ return nstick; }
 
+	G4double getTotalEnergy(void) const;
+
 	void SetSafetyValve2(int x) { if (x < 0) { x = 0; } safetyValve2 = x; }
 };
 
