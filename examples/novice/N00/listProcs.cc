@@ -35,11 +35,11 @@ main(int argc, char *argv[])
 		G4cout << "Using Physics List: '" << physListName << "'" << G4endl;
 	} else {
 		physListName = "QGSP_BERT";
-		G4cout << "Using Physics List: 'QGSP_BERT' [default]" << G4endl;		
+		G4cout << "Using Physics List: 'QGSP_BERT' [default]" << G4endl;
 	}
 
-        G4RunManager* runManager = new G4RunManager;
-	
+	G4RunManager* runManager = new G4RunManager;
+
 	G4PhysListFactory factory;
 	G4VUserPhysicsList* physList;
 	if (factory.IsReferencePhysList(physListName)) {
@@ -55,7 +55,7 @@ main(int argc, char *argv[])
 	// Set mandatory initialization and user action classes
 	G4VUserDetectorConstruction   *detector   =
 	    new ListProcsDetectorConstruction;
-        G4VUserPrimaryGeneratorAction *gen_action =
+	G4VUserPrimaryGeneratorAction *gen_action =
 	    new ListProcsPrimaryGeneratorAction;
 	runManager->SetUserInitialization(detector);
        	runManager->SetUserAction(gen_action);
@@ -83,7 +83,7 @@ void MyUserPhysicsList::dumpAllParticlesAndProcesses() const
 	     /* none */) {
 		G4ParticleDefinition *pParticle = theParticleIterator->value();
 		G4ProcessManager *pProcManager = pParticle->GetProcessManager();
-		
+
 		G4ProcessVector *pProcVector = pProcManager->GetProcessList();
 		for (int i = 0; i < pProcVector->size(); i++) {
 			G4cout << std::left
@@ -119,7 +119,7 @@ dumpAllPhysicsLists(const G4PhysListFactory *physListFactory)
 
 /*******************************************************************************
  * Prints usage syntax, along with the available physics lists to standard error
- * stream and then exits with a failure exit code.				      
+ * stream and then exits with a failure exit code.
  *******************************************************************************/
 
 static void
@@ -128,7 +128,7 @@ usage(const char *name)
 	G4cerr << "Usage: " << name << " [<Physics List>]" << G4endl;
 	G4cerr << "\t\t--- Available Physics Lists ---" << G4endl;
 
-        G4PhysListFactory factory;
+	G4PhysListFactory factory;
 	dumpAllPhysicsLists(&factory);
 
 	exit(EXIT_FAILURE);
