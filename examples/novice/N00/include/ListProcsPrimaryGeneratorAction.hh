@@ -1,4 +1,3 @@
-//
 // ********************************************************************
 // * License and Disclaimer                                           *
 // *                                                                  *
@@ -22,11 +21,6 @@
 // * use  in  resulting  scientific  publications,  and indicate your *
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
-//
-//
-// $Id: ListProcsPrimaryGeneratorAction.hh,v 1.5 2006-06-29 17:47:17 gunter Exp $
-// GEANT4 tag $Name: not supported by cvs2svn $
-//
 
 #ifndef ListProcsPrimaryGeneratorAction_h
 #define ListProcsPrimaryGeneratorAction_h 1
@@ -38,17 +32,12 @@ class G4Event;
 
 class ListProcsPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
-  public:
-    ListProcsPrimaryGeneratorAction();
-    ~ListProcsPrimaryGeneratorAction();
+public:
+	ListProcsPrimaryGeneratorAction();
+	~ListProcsPrimaryGeneratorAction();
 
-  public:
-    void GeneratePrimaries(G4Event* anEvent);
-
-  private:
-    G4ParticleGun* particleGun;
+public:
+	void GeneratePrimaries(G4Event* anEvent);
 };
 
 #endif
-
-

@@ -1,4 +1,3 @@
-//
 // ********************************************************************
 // * License and Disclaimer                                           *
 // *                                                                  *
@@ -22,11 +21,6 @@
 // * use  in  resulting  scientific  publications,  and indicate your *
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
-//
-//
-// $Id: ListProcsDetectorConstruction.hh,v 1.6 2006-06-29 17:47:13 gunter Exp $
-// GEANT4 tag $Name: not supported by cvs2svn $
-//
 
 #ifndef ListProcsDetectorConstruction_H
 #define ListProcsDetectorConstruction_H 1
@@ -38,29 +32,18 @@ class G4VPhysicalVolume;
 
 class ListProcsDetectorConstruction : public G4VUserDetectorConstruction
 {
-  public:
+public:
+	ListProcsDetectorConstruction();
+	~ListProcsDetectorConstruction();
 
-    ListProcsDetectorConstruction();
-    ~ListProcsDetectorConstruction();
+	G4VPhysicalVolume* Construct();
 
-    G4VPhysicalVolume* Construct();
+private:
+	// Logical volumes
+	G4LogicalVolume* experimentalHall_log;
 
-  private:
-    
-    // Logical volumes
-    //
-    G4LogicalVolume* experimentalHall_log;
-    G4LogicalVolume* tracker_log;
-    G4LogicalVolume* calorimeterBlock_log;
-    G4LogicalVolume* calorimeterLayer_log;
-
-    // Physical volumes
-    //
-    G4VPhysicalVolume* experimentalHall_phys;
-    G4VPhysicalVolume* calorimeterLayer_phys;
-    G4VPhysicalVolume* calorimeterBlock_phys;
-    G4VPhysicalVolume* tracker_phys;
+	// Physical volumes
+	G4VPhysicalVolume* experimentalHall_phys;
 };
 
 #endif
-

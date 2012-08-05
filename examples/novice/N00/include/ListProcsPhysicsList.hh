@@ -1,4 +1,3 @@
-//
 // ********************************************************************
 // * License and Disclaimer                                           *
 // *                                                                  *
@@ -22,48 +21,23 @@
 // * use  in  resulting  scientific  publications,  and indicate your *
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
-//
-//
-// $Id: ListProcsPhysicsList.hh,v 1.6 2006-06-29 17:47:15 gunter Exp $
-// GEANT4 tag $Name: not supported by cvs2svn $
-//
-// 
-//
-// ListProcsPhysicsList
-//  Construct/define particles and physics processes
-//
-//  Particle defined in ExampleN00
-//    geantino
-//
-//  Process defined in ExampleN00
-//    transportation
-//
 
 #ifndef ListProcsPhysicsList_h
 #define ListProcsPhysicsList_h 1
 
 #include "G4VUserPhysicsList.hh"
-#include "globals.hh"
 
 class ListProcsPhysicsList : public G4VUserPhysicsList
 {
-  public:
-    ListProcsPhysicsList();
-    ~ListProcsPhysicsList();
-  void Test();
+public:
+	ListProcsPhysicsList();
+	~ListProcsPhysicsList();
 
-  protected:
-    // Construct particle and physics process
-    void ConstructParticle();
-    void ConstructProcess();
-    void SetCuts();
+protected:
+	// Construct particle and physics process
+	void ConstructParticle();
+	void ConstructProcess();
+	void SetCuts();
 };
 
 #endif
-
-
-
-
-
-
-
