@@ -27,17 +27,19 @@
 
 #include "G4VUserPhysicsList.hh"
 
+/*******************************************************************************
+ * We need to derive this class off the G4VUserPhysicsList class, in order to
+ * acquire access to the protected members of the former. Namely the
+ * 'theParticleIterator' member variable.
+ ******************************************************************************/
+
 class ListProcsPhysicsList : public G4VUserPhysicsList
 {
 public:
 	ListProcsPhysicsList();
 	~ListProcsPhysicsList();
+	void dumpAllParticlesAndProcesses() const;
 
-protected:
-	// Construct particle and physics process
-	void ConstructParticle();
-	void ConstructProcess();
-	void SetCuts();
 };
 
 #endif

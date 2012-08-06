@@ -22,7 +22,10 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 
+#include <iomanip>
+
 #include "ListProcsPhysicsList.hh"
+#include "G4RunManager.hh"
 
 ListProcsPhysicsList::ListProcsPhysicsList()
 {
@@ -32,14 +35,26 @@ ListProcsPhysicsList::~ListProcsPhysicsList()
 {
 }
 
-void ListProcsPhysicsList::ConstructParticle()
-{
-}
+/*******************************************************************************
+ * For every particle, print its name, type and available physics' processes to
+ * standard output stream.
+ ******************************************************************************/
 
-void ListProcsPhysicsList::ConstructProcess()
+void ListProcsPhysicsList::dumpAllParticlesAndProcesses() const
 {
-}
+	for (theParticleIterator->reset();
+	     (*theParticleIterator)();
+	     /* none */) {
+		G4ParticleDefinition *pParticle = theParticleIterator->value();
+		G4ProcessManager *pProcManager = pParticle->GetProcessManager();
 
-void ListProcsPhysicsList::SetCuts()
-{
+		G4ProcessVector *pProcVector = pProcManager->GetProcessList();
+		for (int i = 0; i < pProcVector->size(); i++) {
+			G4cout << std::left
+			       << std::setw(22) << pParticle->GetParticleName() << " "
+			       << std::setw(15) << pParticle->GetParticleType() << " "
+			       << std::setw(22) << (*pProcVector)[i]->GetProcessName()
+			       << G4endl;
+		}
+	}
 }

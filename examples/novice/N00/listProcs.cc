@@ -11,18 +11,6 @@
 static void usage(const char *name);
 static void dumpAllPhysicsLists(const G4PhysListFactory *physListFactory);
 
-/*******************************************************************************
- * We need to derive this class off the G4VUserPhysicsList class, in order to
- * acquire access to the protected members of the former. Namely the
- * 'theParticleIterator' member variable.
- ******************************************************************************/
-
-class MyUserPhysicsList : public G4VUserPhysicsList
-{
-public:
-	void dumpAllParticlesAndProcesses() const;
-};
-
 int
 main(int argc, char *argv[])
 {
@@ -63,36 +51,12 @@ main(int argc, char *argv[])
 	runManager->Initialize();
 
 	// We are downcasting, which needs to be explicit
-	MyUserPhysicsList *ppl = static_cast<MyUserPhysicsList *>(physList);
+	ListProcsPhysicsList *ppl = static_cast<ListProcsPhysicsList *>(physList);
 	ppl->dumpAllParticlesAndProcesses();
 
 	delete runManager;
 
 	return 0;
-}
-
-/*******************************************************************************
- * For every particle, print its name, type and available physics' processes to
- * standard output stream.
- ******************************************************************************/
-
-void MyUserPhysicsList::dumpAllParticlesAndProcesses() const
-{
-	for (theParticleIterator->reset();
-	     (*theParticleIterator)();
-	     /* none */) {
-		G4ParticleDefinition *pParticle = theParticleIterator->value();
-		G4ProcessManager *pProcManager = pParticle->GetProcessManager();
-
-		G4ProcessVector *pProcVector = pProcManager->GetProcessList();
-		for (int i = 0; i < pProcVector->size(); i++) {
-			G4cout << std::left
-			       << std::setw(22) << pParticle->GetParticleName() << " "
-			       << std::setw(15) << pParticle->GetParticleType() << " "
-			       << std::setw(22) << (*pProcVector)[i]->GetProcessName()
-			       << G4endl;
-		}
-	}
 }
 
 /*******************************************************************************
@@ -106,7 +70,7 @@ dumpAllPhysicsLists(const G4PhysListFactory *physListFactory)
 		std::vector<G4String> availablePhysLists =
 		    physListFactory->AvailablePhysLists();
 
-		for (int i = 0; i < availablePhysLists.size(); i++) {
+		for (unsigned int i = 0; i < availablePhysLists.size(); i++) {
 			if (i && i % 4 == 0)
 				G4cerr << G4endl;
 			G4cerr << std::left
